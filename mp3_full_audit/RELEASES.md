@@ -113,6 +113,8 @@ This version transformed the tool from a simple scanner into a metadata‑aware 
 
 ---
 
+# **mp3_reduce_tool - Releases**
+
 ## **v1.0.0 — Initial Release**
 
 **Released:** 2026‑02‑15
