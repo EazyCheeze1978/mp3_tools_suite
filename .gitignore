@@ -1,0 +1,19 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Output CSVs
+*.csv
+
+# Playnite exports (optional)
+titles_sources_ids.csv
+
+# VS Code workspace settings (optional)
+.vscode/
+.markdownlint.json

@@ -1,0 +1,118 @@
+- load_playnite_csv() {
+-     local csv_file=""
+-
+-     if [ -f "$PLAYNITE_CSV_DEFAULT" ]; then
+-         csv_file="$PLAYNITE_CSV_DEFAULT"
+-         echo -e "${GREEN}Found Playnite CSV:${RESET} $csv_file"
+-     else
+-         echo ""
+-         echo -e "${CYAN}Playnite CSV not found as '${PLAYNITE_CSV_DEFAULT}'.${RESET}"
+-         read -p "Enter Playnite CSV filename to use (or leave blank to skip): " user_csv
+-         if [ -n "$user_csv" ] && [ -f "$user_csv" ]; then
+-             csv_file="$user_csv"
+-             echo -e "${GREEN}Using Playnite CSV:${RESET} $csv_file"
+-         elif [ -n "$user_csv" ]; then
+-             echo -e "${YELLOW}File not found: $user_csv. Skipping Playnite metadata.${RESET}"
+-             return
+-         else
+-             echo -e "${YELLOW}No Playnite CSV specified. Skipping Playnite metadata.${RESET}"
+-             return
+-         fi
+-     fi
+-
+-     local line
+-     local is_header=1
+-     while IFS= read -r line; do
+-         if [ $is_header -eq 1 ]; then
+-             is_header=0
+-             continue
+-         fi
+-         local name source id
+-         name=$(echo "$line"   | awk -F',' '{print $1}')
+-         source=$(echo "$line" | awk -F',' '{print $2}')
+-         id=$(echo "$line"     | awk -F',' '{print $3}')
+-         name=$(echo "$name" | sed 's/^"//;s/"$//')
+-         source=$(echo "$source" | sed 's/^"//;s/"$//')
+-         id=$(echo "$id" | sed 's/^"//;s/"$//')
+-         if [ -n "$id" ]; then
+-             GAME_TITLE_BY_ID["$id"]="$name"
+-             GAME_SOURCE_BY_ID["$id"]="$source"
+-         fi
+-     done < "$csv_file"
+-
+-     echo -e "${GREEN}Loaded Playnite metadata for ${#GAME_TITLE_BY_ID[@]} IDs.${RESET}"
+- }
+
++ ########################
++ # Forgiving CSV Loader for Playnite Metadata
++ ########################
++ load_playnite_csv() {
++     local csv_file=""
++
++     # Auto-detect default CSV or ask user
++     if [ -f "$PLAYNITE_CSV_DEFAULT" ]; then
++         csv_file="$PLAYNITE_CSV_DEFAULT"
++         echo -e "${GREEN}Found Playnite CSV:${RESET} $csv_file"
++     else
++         echo ""
++         echo -e "${CYAN}Playnite CSV not found as '${PLAYNITE_CSV_DEFAULT}'.${RESET}"
++         read -p "Enter Playnite CSV filename to use (or leave blank to skip): " user_csv
++         if [ -n "$user_csv" ] && [ -f "$user_csv" ]; then
++             csv_file="$user_csv"
++             echo -e "${GREEN}Using Playnite CSV:${RESET} $csv_file"
++         elif [ -n "$user_csv" ]; then
++             echo -e "${YELLOW}File not found: $user_csv. Skipping Playnite metadata.${RESET}"
++             return
++         else
++             echo -e "${YELLOW}No Playnite CSV specified. Skipping Playnite metadata.${RESET}"
++             return
++         fi
++     fi
++
++     # Forgiving CSV reader:
++     # - Strips BOM
++     # - Converts CRLF → LF
++     # - Trims whitespace
++     # - Skips blank/malformed lines
++     local is_header=1
++     local line
++
++     while IFS= read -r line || [ -n "$line" ]; do
++
++         # Strip BOM if present
++         line="${line//$'\ufeff'/}"
++
++         # Trim whitespace
++         line="$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
++
++         # Skip blank lines
++         [ -z "$line" ] && continue
++
++         # Skip header
++         if [ $is_header -eq 1 ]; then
++             is_header=0
++             continue
++         fi
++
++         # Extract fields
++         local name source id
++         name=$(echo "$line"   | awk -F',' '{print $1}')
++         source=$(echo "$line" | awk -F',' '{print $2}')
++         id=$(echo "$line"     | awk -F',' '{print $3}')
++
++         # Skip malformed lines
++         [ -z "$id" ] && continue
++
++         # Remove surrounding quotes
++         name=$(echo "$name" | sed 's/^"//;s/"$//')
++         source=$(echo "$source" | sed 's/^"//;s/"$//')
++         id=$(echo "$id" | sed 's/^"//;s/"$//')
++
++         # Store in associative arrays
++         GAME_TITLE_BY_ID["$id"]="$name"
++         GAME_SOURCE_BY_ID["$id"]="$source"
++
++     done < <(sed 's/\r$//' "$csv_file")
++
++     echo -e "${GREEN}Loaded Playnite metadata for ${#GAME_TITLE_BY_ID[@]} IDs.${RESET}"
++ }
