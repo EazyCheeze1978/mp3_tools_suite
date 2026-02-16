@@ -6,7 +6,7 @@
 
 #### *Transparent, reversible, metadata‑rich audio library utilities*
 
-This suite contains two Bash‑based tools designed for safely analyzing and managing MP3 libraries. They are especially useful for **Playnite** users and for those using the [**UniPlaySong** extension](https://github.com/aHuddini/UniPlaySong), which stores soundtrack files in game‑ID‑named folders.
+This suite contains two Bash‑based tools designed for safely analyzing and managing MP3 libraries. They are especially useful for [**Playnite**](https://playnite.link/) users and for those using the [**UniPlaySong** extension](https://github.com/aHuddini/UniPlaySong), which stores soundtrack files in game‑ID‑named folders.
 
 Both tools emphasize:
 
