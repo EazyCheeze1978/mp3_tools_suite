@@ -58,7 +58,7 @@ This version made the CSV output professional‑grade and safe for large librari
 
 ### **Why this release matters**
 
-This was the breakthrough that made the tool fast, stable, and scalable.
+This was the breakthrough that made the tool fast [relatively - without parallelization it's still slow as molasses with thousands of songs!], stable, and scalable.
 
 ---
 
