@@ -94,7 +94,7 @@ This was the first tool in the suite and will be modernized to match the audit t
 
 #### `mp3_tag_enrich.sh` - tag MP3s with missing ID3 information
 
-UniPlaySong includes a capability to download music from YouTube videos via yt-dlp. The resulting downloads lack ID3 tags.
+UniPlaySong includes a capability to download music from YouTube videos via [yt-dlp](https://github.com/yt-dlp/yt-dlp). The resulting downloads lack ID3 tags.
 
 This prospective tool will scan, as with the other tools, all MP3s in a target directory, pair them with their game titles (again via the Playnite Library Exporter Advanced extension export) and set those as the album name tags, and set the filenames as the title tags.
 
