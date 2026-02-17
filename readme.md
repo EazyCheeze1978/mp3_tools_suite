@@ -87,11 +87,22 @@ This was the first tool in the suite and will be modernized to match the audit t
 
 ##### **Future Plans for Reduce**
 
-- Bring CSV output in line with `mp3_full_audit`  
-- (UPDATED on 2-17) Add Playnite‑aware reduction reporting  (this already implemented by UniPlaySong for future/current release! Thanks Huddini!)
-- (UPDATED on 2-17) Add AWK‑based metadata loading  (this is obviated via chatting with Copilot during our vibe coding session - not needed if all we're loading is MP3 bitrate to decide on reduction)
+- Bring CSV output in line with mp3_full_audit  
+Ensure consistent column order, escaping, and formatting across both tools.
+
+- (UPDATED 2‑17) Playnite‑aware reduction reporting  
+Originally planned for this tool, but now implemented natively in UniPlaySong.
+Thanks, Huddini!
+
+- (UPDATED 2‑17) AWK‑based metadata loading  
+No longer needed — after vibe‑coding discussions, we realized the reduce tool only needs bitrate data from ffprobe, not full metadata parsing.
+
 - Improve safety checks and logging  
-- (NEW for 2-17) Implement parallelization as far as Bash allows - this will sadly disable many progress tracking features but enable a few others
+Add clearer error messages, better validation, and more transparent output.
+
+- (NEW 2‑17) Implement parallelization  
+Add multi‑core processing for faster reductions.
+This will disable some progress‑bar features, but we’ll introduce lightweight progress indicators that work well with parallel jobs.
 
 ### Tools for the Future
 
