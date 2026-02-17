@@ -1,6 +1,8 @@
 # **README for MP3 Tools Suite**
 
-## **Readme current as of v1.4.6**
+## **Readme current as of mp3_full_audit v1.4.6**
+
+**(see [below](#future-plans-for-reduce) for special note on mp3_reduce_tool - updated 20260217 ~12pm)**
 
 ### **MP3 Tools Suite**  
 
@@ -83,12 +85,13 @@ This was the first tool in the suite and will be modernized to match the audit t
 - Interactive or autonomous display modes  
 - Optional directory argument  
 
-##### **Future Plans**
+##### **Future Plans for Reduce**
 
 - Bring CSV output in line with `mp3_full_audit`  
-- Add Playnite‑aware reduction reporting  
-- Add AWK‑based metadata loading  
+- (UPDATED on 2-17) Add Playnite‑aware reduction reporting  (this already implemented by UniPlaySong for future/current release! Thanks Huddini!)
+- (UPDATED on 2-17) Add AWK‑based metadata loading  (this is obviated via chatting with Copilot during our vibe coding session - not needed if all we're loading is MP3 bitrate to decide on reduction)
 - Improve safety checks and logging  
+- (NEW for 2-17) Implement parallelization as far as Bash allows - this will sadly disable many progress tracking features but enable a few others
 
 ### Tools for the Future
 
