@@ -104,6 +104,21 @@ Add clearer error messages, better validation, and more transparent output.
 Add multi‑core processing for faster reductions.
 This will disable some progress‑bar features, but we’ll introduce lightweight progress indicators that work well with parallel jobs.
 
+### **Roadmap [thanks again to vibe coding!]**
+
+This suite is evolving alongside the Playnite and UniPlaySong ecosystems. These are long‑term directions the project may explore as time, energy, and community interest allow:
+
+- **Unified media‑management toolkit**  
+  Expand beyond MP3s to support additional audio formats commonly used by Playnite extensions, leveraging ffmpeg’s broad codec support.
+
+- **UPS‑aware workflows**  
+  Integrate with UniPlaySong’s planned CSV export to simplify metadata handling and reduce reliance on Playnite’s Library Exporter Advanced.
+
+- **Generalized Playnite media auditing**  
+  Adapt the audit tool to support other extensions that manage audio or video content (e.g., EML), creating a universal media‑audit engine for Playnite users.
+
+This roadmap is intentionally flexible — it reflects possibilities, not obligations.
+
 ### Tools for the Future
 
 #### `mp3_tag_enrich.sh` - tag MP3s with missing ID3 information
@@ -113,8 +128,6 @@ UniPlaySong includes a capability to download music from YouTube videos via [yt-
 This prospective tool will scan, as with the other tools, all MP3s in a target directory, pair them with their game titles (again via the Playnite Library Exporter Advanced extension export) and set those as the album name tags, and set the filenames as the title tags.
 
 (I don't know of anywhere in Playnite or any extension that exposes discrete composer information for the artist tags, and there also may be/usually are multiple composers for a game - if you know how to handle this, please reach out)
-
----
 
 ### **Playnite Metadata Integration**
 
@@ -136,14 +149,14 @@ This workflow is now the *expected* mode of operation for the audit tool.
 
 ---
 
-### **Requirements**
+#### **Requirements**
 
 - Git Bash (Windows) or any POSIX‑compatible shell (Linux/macOS/WSL)  
 - `ffmpeg` and `ffprobe` in your PATH  
 - `stat`  
 - `bc`  
 
-#### **Windows PATH setup**
+##### **Windows PATH setup**
 
 If you installed ffmpeg manually:
 
@@ -152,9 +165,9 @@ If you installed ffmpeg manually:
 
 ---
 
-### **Usage**
+#### **Usage**
 
-#### **Option A — Run inside the target directory**
+##### **Option A — Run inside the target directory**
 
 ``` Code
 cd "/path/to/music"
