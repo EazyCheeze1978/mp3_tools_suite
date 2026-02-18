@@ -2,7 +2,7 @@
 
 #############################################
 # MP3 Reduction Tool (Preview / Reduce / CSV / Safe Delete)
-# v1.0.3 — Parallelized Reduction + Progress Monitor (Fixed)
+# v1.0.3 — Parallelized Reduction + Progress Monitor (Portable)
 #############################################
 
 # -------- Colors --------
@@ -167,19 +167,6 @@ preview_mode() {
     echo ""
 }
 
-# -------- NEW: Parallel Worker (exported for subshell visibility) --------
-reduce_one_file() {
-    local file="$1"
-    local dir base
-    dir=$(dirname "$file")
-    base=$(basename "$file" .mp3)
-
-    ffmpeg -loglevel error -y -i "$file" -b:a 128k "${dir}/${base}_reduced.mp3"
-
-    echo 1 >> "$PROGRESS_FILE"
-}
-export -f reduce_one_file
-
 # -------- NEW: Progress Monitor --------
 progress_monitor() {
     local spinner='|/-\'
@@ -198,7 +185,7 @@ progress_monitor() {
     done
 }
 
-# -------- NEW: Parallelized Reduction Mode (fixed) --------
+# -------- NEW: Parallelized Reduction Mode (portable worker) --------
 reduce_mode() {
     echo ""
     echo -e "${MAGENTA}Reduction Mode (128 kbps)${RESET}"
@@ -228,7 +215,15 @@ reduce_mode() {
     progress_monitor &
     MONITOR_PID=$!
 
-    xargs -P "$PARALLEL_JOBS" -I {} bash -c 'reduce_one_file "$@"' _ {} < "$FILE_LIST"
+    xargs -P "$PARALLEL_JOBS" -I {} bash -c '
+        file="$1"
+        dir=$(dirname "$file")
+        base=$(basename "$file" .mp3)
+
+        ffmpeg -loglevel error -y -i "$file" -b:a 128k "${dir}/${base}_reduced.mp3"
+
+        echo 1 >> "'"$PROGRESS_FILE"'"
+    ' _ {} < "$FILE_LIST"
 
     kill "$MONITOR_PID" 2>/dev/null
     echo ""
