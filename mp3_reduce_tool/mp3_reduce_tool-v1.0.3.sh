@@ -381,4 +381,14 @@ while true; do
     echo "4) Safe-delete originals (with verified reduced files)"
     echo "5) Exit"
     echo ""
-    read -p "Choose an option [1-5]: "
+    read -p "Choose an option [1-5]: " choice
+
+    case "$choice" in
+        1) preview_mode ;;
+        2) reduce_mode ;;
+        3) csv_mode ;;
+        4) safe_delete_mode ;;
+        5) echo "Goodbye."; exit 0 ;;
+        *) echo -e "${YELLOW}Invalid choice.${RESET}" ;;
+    esac
+done
