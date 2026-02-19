@@ -25,51 +25,7 @@ Both tools emphasize:
 
 ---
 
-#### **`mp3_full_audit.sh` — v1.4.6 (Current Flagship Tool)**  
-
-A comprehensive, Playnite‑aware audit tool for *all* MP3 files in a directory tree.
-
-This is the most advanced tool in the suite and the one under active development. It is designed to work seamlessly with **Playnite’s Library Exporter Advanced** extension, enabling rich metadata cross‑referencing and game‑aware CSV output.
-
-##### **Features (v1.4.6)**
-
-- Scans all MP3s recursively  
-- Extracts:
-  - Bitrate  
-  - File size  
-  - Duration  
-  - ID3 metadata (title, artist, album)  
-  - ID3 tag presence  
-- **Playnite metadata integration (expected workflow)**  
-  - Uses exported CSV (`Name, Sources, Id`)  
-  - Maps MP3 folders to Playnite game IDs  
-  - Adds `game_title`, `game_source`, and `game_id` to the audit  
-- **AWK‑based CSV loader**  
-  - Handles UTF‑8, BOM, CRLF, quoted fields, embedded commas  
-  - Scales to 5,000+ Playnite entries  
-  - Fully Git‑Bash‑compatible  
-- **Clean CSV output**  
-  - Human‑friendly column order  
-  - Fully escaped fields  
-  - Spreadsheet‑safe  
-- **Progress bar and pre‑scan**  
-- **Batch totals and grand totals**  
-- **Color‑coded output**  
-- Optional directory argument  
-- Non‑destructive and fully transparent  
-
-##### **Intended Use**
-
-This tool is ideal for:
-
-- UniPlaySong users wanting to audit soundtrack coverage  
-- Playnite users maintaining large game‑ID‑based music libraries  
-- Anyone needing a metadata‑rich CSV of their MP3 collection  
-- Future integration into Playnite or UniPlaySong (pending interest)  
-
----
-
-#### **`mp3_reduce_tool.sh` — v1.1.0 (Legacy Tool, Pending Update)**  
+#### **`mp3_reduce_tool.sh` — v1.1.0 (Current Flagship Tool)**  
 
 (NOW the v1.1.0 versioning is accurate!)
 
@@ -151,6 +107,55 @@ The audit tool is designed to work with **Playnite’s Library Exporter Advanced
    - `game_id`  
 
 This workflow is now the *expected* mode of operation for the audit tool.
+
+---
+
+#### **`mp3_full_audit.sh` — v1.4.6 (On the backburner - obviated by more featured tools elsewhere)**  
+
+*Could also be repurposed to work with more metadata/media types supported by Playnite?*
+
+A comprehensive, Playnite‑aware audit tool for *all* MP3 files in a directory tree.
+
+This is the most advanced tool in the suite and the one under active development. It is designed to work seamlessly with **Playnite’s Library Exporter Advanced** extension, enabling rich metadata cross‑referencing and game‑aware CSV output.
+
+##### **Features (v1.4.6)**
+
+- Scans all MP3s recursively  
+- Extracts:
+  - Bitrate  
+  - File size  
+  - Duration  
+  - ID3 metadata (title, artist, album)  
+  - ID3 tag presence  
+- **Playnite metadata integration (expected workflow)**  
+  - Uses exported CSV (`Name, Sources, Id`)  
+  - Maps MP3 folders to Playnite game IDs  
+  - Adds `game_title`, `game_source`, and `game_id` to the audit  
+- **AWK‑based CSV loader**  
+  - Handles UTF‑8, BOM, CRLF, quoted fields, embedded commas  
+  - Scales to 5,000+ Playnite entries  
+  - Fully Git‑Bash‑compatible  
+- **Clean CSV output**  
+  - Human‑friendly column order  
+  - Fully escaped fields  
+  - Spreadsheet‑safe  
+- **Progress bar and pre‑scan**  
+- **Batch totals and grand totals**  
+- **Color‑coded output**  
+- Optional directory argument  
+- Non‑destructive and fully transparent  
+
+##### **Intended Use**
+
+This tool is ideal for:
+
+- UniPlaySong users wanting to audit soundtrack coverage  
+- Playnite users maintaining large game‑ID‑based music libraries  
+- Anyone needing a metadata‑rich CSV of their MP3 collection  
+- Future integration into Playnite or UniPlaySong (pending interest)  
+
+---
+
 
 ---
 
