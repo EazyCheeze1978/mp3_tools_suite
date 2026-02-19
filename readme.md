@@ -154,14 +154,7 @@ This workflow is now the *expected* mode of operation for the audit tool.
 
 ---
 
-#### **Requirements**
-
-``` NO LONGER APPLIES
-- Git Bash (Windows) or any POSIX‑compatible shell (Linux/macOS/WSL)
-- `ffmpeg` and `ffprobe` in your PATH
-- `stat`
-- `bc`
-```
+### **Requirements**
 
 WINDOWS SUBSYSTEM FOR LINUX. Sadly a hard requirement.
 
@@ -169,12 +162,9 @@ Git Bash is not cutting it anymore for compatibility for a lot of these function
 
 If anyone can help port to a cross-platform language (Python is the most common I've seen and the most painless installation/application I've experienced), please let me know.
 
-##### **Windows PATH setup**
+#### Installing FFMPEG package in your chosen distro (Ubuntu default)
 
-If you installed ffmpeg manually:
-
-1. Add the `bin/` folder to your PATH  
-2. Sign out and back in (or restart)  
+Type 'sudo apt install ffmpeg' followed by your password.
 
 ---
 
