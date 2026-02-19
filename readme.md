@@ -158,32 +158,64 @@ This workflow is now the *expected* mode of operation for the audit tool.
 
 WINDOWS SUBSYSTEM FOR LINUX. Sadly a hard requirement.
 
-Git Bash is not cutting it anymore for compatibility for a lot of these functions we're talking about above. We needed a full Linux environment - thankfully Windows has one.
+Git Bash cannot reliably handle subshells, xargs parallelization, or ffmpeg process management. WSL provides a real Linux environment where all features work correctly.
 
-If anyone can help port to a cross-platform language (Python is the most common I've seen and the most painless installation/application I've experienced), please let me know.
+Git Bash works for simple scripts, but this tool relies on features that only a full Linux environment provides.
+
+If anyone can help port to a cross-platform language (Python is the most common I've seen and the most painless installation/application I've experienced), please let me know. The *logic* is portable on its own, but the *parallelization* and *ffmpeg orchestration* would need re‑implementation.
 
 #### Installing FFMPEG package in your chosen distro (Ubuntu default)
 
-Type 'sudo apt install ffmpeg' followed by your password.
+Type:
+
+``` Code
+sudo apt update
+sudo apt install ffmpeg
+```
+
+followed by your password you created upon initial installation of WSL (not shown or even echoed as blank spaces).
 
 ---
 
-#### **Usage**
+### **Usage**
 
-##### **Option A — Run inside the target directory**
+#### **Option A — Set up a directory structure on WSL's VHD**
 
-``` Code
-cd "/path/to/music"
-./mp3_full_audit.sh
-```
-
-##### **Option B — Provide a directory argument**
+Make sure WSL is running so the VHD is mounted, then:
 
 ``` Code
-./mp3_full_audit.sh "/path/to/music"
+mkdir -p ~/scripts/bin
+mkdir -p ~/scripts/logs
 ```
 
-Same for the reduce tool.
+should be all that is required. Place scripts in ~/scripts/bin directly! Make sure to run:
+
+``` Code
+chmod +x <script>.sh
+```
+
+to make them executable.
+
+In .bashrc in your VHD's root - add the line:
+
+``` Code
+export PATH="$HOME/scripts/bin:$PATH"
+```
+
+After editing .bashrc, run source ~/.bashrc or open a new terminal.
+
+This enables you to run a script from anywhere!
+
+So you can run mp3_reduce_tool.sh from the UniPlaySong/games directory.
+
+#### **Option B — Provide a directory argument**
+
+``` Code
+./<script>.sh "/path/to/music"
+```
+
+This bypasses the PATH setup and runs the script directly.
+Option A is still best, though.
 
 ---
 
