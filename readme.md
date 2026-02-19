@@ -156,10 +156,12 @@ This workflow is now the *expected* mode of operation for the audit tool.
 
 #### **Requirements**
 
-~~- Git Bash (Windows) or any POSIX‑compatible shell (Linux/macOS/WSL)  ~~
-~~- `ffmpeg` and `ffprobe` in your PATH  ~~
-~~- `stat`  ~~
-~~- `bc`  ~~
+``` NO LONGER APPLIES
+- Git Bash (Windows) or any POSIX‑compatible shell (Linux/macOS/WSL)
+- `ffmpeg` and `ffprobe` in your PATH
+- `stat`
+- `bc`
+```
 
 WINDOWS SUBSYSTEM FOR LINUX. Sadly a hard requirement.
 
