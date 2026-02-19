@@ -221,7 +221,7 @@ Option A is still best, though.
 
 ### What's next for the tools - and going forward
 
-I'd like to be able to introduce parallelization to the extent that Bash allows - and maybe at some point upgrade the entire codebase to Python for more robust parallel execution.
+I'd like to be able to introduce parallelization to the extent that Bash allows (this has been done) - and maybe at some point upgrade the entire codebase to Python for better compatibility/ease of installation.
 
 Of course, the big big goal is going to be integration, in whole or in part, with UniPlaySong, that most sonic of Playnite extensions! I will of course give a massive gratitude burst and shout-out to Huddini, who inspired me to make these tools - if you haven't checked his work out, I highly recommend it!
 
