@@ -71,6 +71,10 @@ This tool is ideal for:
 
 #### **`mp3_reduce_tool.sh` — v1.1.0 (Legacy Tool, Pending Update)**  
 
+(NOW the v1.1.0 versioning is accurate!)
+
+**(REQUIRES WINDOWS SUBSYSTEM FOR LINUX - see requirements below.)**
+
 A full‑featured utility for reducing MP3 files to 128 kbps with complete safety.
 
 This was the first tool in the suite and will be modernized to match the audit tool’s robustness and CSV style. Until then, it remains fully functional but less advanced.
@@ -100,9 +104,10 @@ No longer needed — after vibe‑coding discussions, we realized the reduce too
 - Improve safety checks and logging  
 Add clearer error messages, better validation, and more transparent output.
 
-- (NEW 2‑17) Implement parallelization  
-Add multi‑core processing for faster reductions.
-This will disable some progress‑bar features, but we’ll introduce lightweight progress indicators that work well with parallel jobs.
+- (UPDATED 2‑20) Implement parallelization  
+*Add multi‑core processing for faster reductions.*
+*This will disable some progress‑bar features, but we’ll introduce lightweight progress* *indicators that work well with parallel jobs.*
+DONE! However, see the WSL requirement below.
 
 ### **Roadmap [thanks again to vibe coding!]**
 
@@ -151,10 +156,16 @@ This workflow is now the *expected* mode of operation for the audit tool.
 
 #### **Requirements**
 
-- Git Bash (Windows) or any POSIX‑compatible shell (Linux/macOS/WSL)  
-- `ffmpeg` and `ffprobe` in your PATH  
-- `stat`  
-- `bc`  
+~~- Git Bash (Windows) or any POSIX‑compatible shell (Linux/macOS/WSL)  ~~
+~~- `ffmpeg` and `ffprobe` in your PATH  ~~
+~~- `stat`  ~~
+~~- `bc`  ~~
+
+WINDOWS SUBSYSTEM FOR LINUX. Sadly a hard requirement.
+
+Git Bash is not cutting it anymore for compatibility for a lot of these functions we're talking about above. We needed a full Linux environment - thankfully Windows has one.
+
+If anyone can help port to a cross-platform language (Python is the most common I've seen and the most painless installation/application I've experienced), please let me know.
 
 ##### **Windows PATH setup**
 
