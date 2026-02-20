@@ -116,6 +116,33 @@ The long‑term goal is for the Python version to become the **primary** reduce 
 
 ---
 
+## 🗺 Milestone Roadmap
+
+The Python port follows a clear semantic versioning roadmap.  
+Each Milestone represents a development phase with its own goals and issues.
+
+### **v0.1.x — Parallelization & Logging (Current)**
+
+Core functionality: parallel workers, logging, skip‑reason reporting, confirmation prompts, CSV scaffolding.
+
+### **v0.2.x — Windows Compatibility & CLI Flags**
+
+Cross‑platform support, command‑line arguments, CSV export, path normalization.
+
+### **v0.3.x — Packaging & Distribution**
+
+pip packaging, PyInstaller builds, version metadata, optional GUI wrapper.
+
+### **v1.0.0 — First Stable Python Release**
+
+Feature‑complete, cross‑platform, documented, and ready for general use.
+
+### **Future Ideas & Explorations**
+
+Long‑term possibilities: GUI, Playnite integration, multi‑format support, unified media toolkit.
+
+---
+
 ## 🛣 Roadmap (Long‑Term)
 
 - Full cross‑platform packaging (pip or PyInstaller)  
