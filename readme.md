@@ -1,225 +1,192 @@
-# **README for MP3 Tools Suite**
+# MP3 Reduce Tool — Python Port (Pre‑Release Branch)
 
-## **Readme current as of mp3_full_audit v1.4.6**
+This branch contains the **active development** of the cross‑platform Python rewrite of the MP3 Reduce Tool.  
+It is experimental, fast‑moving, and may include features not yet available in the stable Bash version on `main`.
 
-**(see [below](#future-plans-for-reduce) for special note on mp3_reduce_tool - updated 20260217 ~12pm)**
+If you're here, you're either:
 
-### **MP3 Tools Suite**  
+- testing new features  
+- contributing to development  
+- curious about the future direction of the suite  
 
-#### *Transparent, reversible, metadata‑rich audio library utilities*
-
-This suite contains two Bash‑based tools designed for safely analyzing and managing MP3 libraries. They are especially useful for [**Playnite**](https://playnite.link/) users and for those using the [**UniPlaySong** extension](https://github.com/aHuddini/UniPlaySong), which stores soundtrack files in game‑ID‑named folders.
-
-Both tools emphasize:
-
-- Transparency  
-- Reversibility  
-- Safety  
-- Metadata visibility  
-- User choice (interactive or autonomous modes)  
-- Predictable, deterministic behavior  
+Either way — welcome.
 
 ---
 
-### **Tools Included**
+## 🚀 Project Status
+
+The Python port is now fully functional through **v0.1.2**, including:
+
+- ffprobe‑based metadata extraction  
+- savings calculations  
+- time‑filter logic  
+- skip‑reason reporting  
+- reducible file list construction  
+- confirmation prompts  
+- parallel ffmpeg workers  
+- spinner‑based progress indicator  
+- timestamped logging  
+- PASS/SKIP/REDUCE audit entries  
+- CSV scaffolding  
+
+This branch evolves rapidly and may contain breaking changes between versions.
+
+For a full version history, see:  
+👉 `mp3_reduce_tool/python/RELEASES.md`
 
 ---
 
-#### **`mp3_full_audit.sh` — v1.4.6 (Current Flagship Tool)**  
+## 🧩 Why a Python Port?
 
-A comprehensive, Playnite‑aware audit tool for *all* MP3 files in a directory tree.
+The original Bash tools require **Windows Subsystem for Linux (WSL)** due to:
 
-This is the most advanced tool in the suite and the one under active development. It is designed to work seamlessly with **Playnite’s Library Exporter Advanced** extension, enabling rich metadata cross‑referencing and game‑aware CSV output.
+- subshell behavior  
+- xargs parallelization  
+- ffmpeg process orchestration  
 
-##### **Features (v1.4.6)**
+Python removes these barriers and enables:
 
-- Scans all MP3s recursively  
-- Extracts:
-  - Bitrate  
-  - File size  
-  - Duration  
-  - ID3 metadata (title, artist, album)  
-  - ID3 tag presence  
-- **Playnite metadata integration (expected workflow)**  
-  - Uses exported CSV (`Name, Sources, Id`)  
-  - Maps MP3 folders to Playnite game IDs  
-  - Adds `game_title`, `game_source`, and `game_id` to the audit  
-- **AWK‑based CSV loader**  
-  - Handles UTF‑8, BOM, CRLF, quoted fields, embedded commas  
-  - Scales to 5,000+ Playnite entries  
-  - Fully Git‑Bash‑compatible  
-- **Clean CSV output**  
-  - Human‑friendly column order  
-  - Fully escaped fields  
-  - Spreadsheet‑safe  
-- **Progress bar and pre‑scan**  
-- **Batch totals and grand totals**  
-- **Color‑coded output**  
-- Optional directory argument  
-- Non‑destructive and fully transparent  
+- true cross‑platform support  
+- cleaner logic  
+- easier installation  
+- better logging  
+- richer metadata handling  
+- future integration with UniPlaySong or Playnite  
 
-##### **Intended Use**
-
-This tool is ideal for:
-
-- UniPlaySong users wanting to audit soundtrack coverage  
-- Playnite users maintaining large game‑ID‑based music libraries  
-- Anyone needing a metadata‑rich CSV of their MP3 collection  
-- Future integration into Playnite or UniPlaySong (pending interest)  
+The long‑term goal is for the Python version to become the **primary** reduce tool.
 
 ---
 
-#### **`mp3_reduce_tool.sh` — v1.1.0 (Legacy Tool, Pending Update)**  
+## 🧪 Current Features (v0.1.x Series)
 
-A full‑featured utility for reducing MP3 files to 128 kbps with complete safety.
+### ✔ Full Preview Mode  
 
-This was the first tool in the suite and will be modernized to match the audit tool’s robustness and CSV style. Until then, it remains fully functional but less advanced.
+- Bitrate, duration, size  
+- Estimated reduced size  
+- Savings percentage  
+- Detailed skip reasons  
+- PASS entries for reducible files  
 
-##### **Features**
+### ✔ Parallel Reduction  
 
-- Preview reducible files (above 128 kbps)  
-- Reduce files to 128 kbps (creates `_reduced.mp3` copies)  
-- CSV export with batch totals or final totals  
-- Safe‑delete mode (verifies reduced files before deleting originals)  
-- Color‑coded output  
-- Interactive or autonomous display modes  
-- Optional directory argument  
+- Multi‑core ffmpeg workers  
+- Silent worker processes  
+- Spinner‑based progress indicator  
+- Clean, non‑interleaved output  
 
-##### **Future Plans for Reduce**
+#### ✔ Logging  
 
-- Bring CSV output in line with mp3_full_audit  
-Ensure consistent column order, escaping, and formatting across both tools.
+- Timestamped entries  
+- SKIP, PASS, REDUCE, SUMMARY  
+- Lexicographically sortable formatting  
 
-- (UPDATED 2‑17) Playnite‑aware reduction reporting  
-Originally planned for this tool, but now implemented natively in UniPlaySong.
-Thanks, Huddini!
+#### ✔ Safety  
 
-- (UPDATED 2‑17) AWK‑based metadata loading  
-No longer needed — after vibe‑coding discussions, we realized the reduce tool only needs bitrate data from ffprobe, not full metadata parsing.
+- Confirmation prompt before reduction  
+- Non‑destructive output (`*_reduced.mp3`)  
+- No automatic deletion  
 
-- Improve safety checks and logging  
-Add clearer error messages, better validation, and more transparent output.
+#### ✔ CSV Scaffolding  
 
-- (NEW 2‑17) Implement parallelization  
-Add multi‑core processing for faster reductions.
-This will disable some progress‑bar features, but we’ll introduce lightweight progress indicators that work well with parallel jobs.
-
-### **Roadmap [thanks again to vibe coding!]**
-
-This suite is evolving alongside the Playnite and UniPlaySong ecosystems. These are long‑term directions the project may explore as time, energy, and community interest allow:
-
-- **Unified media‑management toolkit**  
-  Expand beyond MP3s to support additional audio formats commonly used by Playnite extensions, leveraging ffmpeg’s broad codec support.
-
-- **UPS‑aware workflows**  
-  Integrate with UniPlaySong’s planned CSV export to simplify metadata handling and reduce reliance on Playnite’s Library Exporter Advanced.
-
-- **Generalized Playnite media auditing**  
-  Adapt the audit tool to support other extensions that manage audio or video content (e.g., EML), creating a universal media‑audit engine for Playnite users.
-
-This roadmap is intentionally flexible — it reflects possibilities, not obligations.
-
-### Tools for the Future
-
-#### `mp3_tag_enrich.sh` - tag MP3s with missing ID3 information
-
-UniPlaySong includes a capability to download music from YouTube videos via [yt-dlp](https://github.com/yt-dlp/yt-dlp). The resulting downloads lack ID3 tags.
-
-This prospective tool will scan, as with the other tools, all MP3s in a target directory, pair them with their game titles (again via the Playnite Library Exporter Advanced extension export) and set those as the album name tags, and set the filenames as the title tags.
-
-(I don't know of anywhere in Playnite or any extension that exposes discrete composer information for the artist tags, and there also may be/usually are multiple composers for a game - if you know how to handle this, please reach out)
-
-### **Playnite Metadata Integration**
-
-The audit tool is designed to work with **Playnite’s Library Exporter Advanced** extension.
-
-#### **Workflow**
-
-1. Export a CSV from Playnite containing:  
-   `Name, Sources, Id`
-2. Place the CSV in the same directory as the audit script.  
-3. The script automatically detects and loads it.  
-4. MP3 folder names (game IDs) are matched to the `Id` column.  
-5. The audit CSV gains:
-   - `game_title`  
-   - `game_source`  
-   - `game_id`  
-
-This workflow is now the *expected* mode of operation for the audit tool.
+- Internal row collection for PASS/REDUCE  
+- CSV export coming in v0.1.3+  
 
 ---
 
-#### **Requirements**
+## 🛣 Roadmap (Short‑Term)
 
-- Git Bash (Windows) or any POSIX‑compatible shell (Linux/macOS/WSL)  
-- `ffmpeg` and `ffprobe` in your PATH  
-- `stat`  
-- `bc`  
+### **v0.1.3 — CSV Export**
 
-##### **Windows PATH setup**
+- Write `reduce_report.csv`  
+- Spreadsheet‑friendly formatting  
+- Optional command‑line flag  
 
-If you installed ffmpeg manually:
+### **v0.1.4 — Command‑Line Arguments**
 
-1. Add the `bin/` folder to your PATH  
-2. Sign out and back in (or restart)  
+- `--dir`  
+- `--minutes`  
+- `--auto` (skip confirmation)  
+- `--csv`  
 
----
+### **v0.1.5 — Windows Compatibility Layer**
 
-#### **Usage**
-
-##### **Option A — Run inside the target directory**
-
-``` Code
-cd "/path/to/music"
-./mp3_full_audit.sh
-```
-
-##### **Option B — Provide a directory argument**
-
-``` Code
-./mp3_full_audit.sh "/path/to/music"
-```
-
-Same for the reduce tool.
+- Auto‑detect platform  
+- Normalize paths  
+- Use Windows ffmpeg if available  
 
 ---
 
-### What's next for the tools - and going forward
+## 🛣 Roadmap (Long‑Term)
 
-I'd like to be able to introduce parallelization to the extent that Bash allows - and maybe at some point upgrade the entire codebase to Python for more robust parallel execution.
+- Full cross‑platform packaging (pip or PyInstaller)  
+- Optional GUI wrapper  
+- Integration hooks for UniPlaySong  
+- Unified media‑management toolkit  
+- Support for additional audio formats  
+- Optional Playnite metadata enrichment  
 
-Of course, the big big goal is going to be integration, in whole or in part, with UniPlaySong, that most sonic of Playnite extensions! I will of course give a massive gratitude burst and shout-out to Huddini, who inspired me to make these tools - if you haven't checked his work out, I highly recommend it!
-
-### **Versioning**
-
-This project uses semantic versioning:
-
-``` Code
-MAJOR.MINOR.PATCH
-```
+These are possibilities, not promises — development follows energy and community interest.
 
 ---
 
-### **License**
+## 🧭 Directory Structure
 
-This project is released under the MIT License (see LICENSE.md).
+mp3_reduce_tool/
+python/
+reduce-v0.0.1.py
+reduce-v0.0.2.py
+...
+reduce-v0.1.2.py
+RELEASES.md
+README.md   ← this file
+
+Older Bash versions are preserved in:
+
+mp3_reduce_tool/bash (deprecated!)/
 
 ---
 
-### **Contributing**
+## 🧪 Testing Notes
 
-Pull requests, suggestions, and improvements are welcome — especially around:
+- ffmpeg must be installed and available in PATH  
+- WSL is recommended for development  
+- Windows support is planned but not yet complete  
+- Parallel reduction will increase CPU usage (expected)  
+- Logs are written to the working directory  
 
-- Playnite integration  
-- UniPlaySong compatibility  
-- Metadata extraction  
-- Workflow enhancements  
-- Future GUI or Playnite extension development  
+If you encounter issues, please include:
+
+- the log file  
+- your Python version  
+- your OS  
+- the command used to run the script  
 
 ---
 
-### **Historical Note (v1.0.0)**
+## 🤝 Contributing
 
-The MP3 Tools Suite began as a pair of simple Bash utilities for analyzing and reducing MP3 files with complete transparency and safety. Over time, the audit tool evolved into a Playnite‑aware metadata engine, and the reduce tool will follow.
+Contributions are welcome — especially around:
+
+- Windows compatibility  
+- CSV export  
+- command‑line argument parsing  
+- performance improvements  
+- documentation  
+- testing across platforms  
+
+---
+
+## 📄 License
+
+This branch follows the project’s MIT License (see `LICENSE.md` on main).
+
+---
+
+## 🕰 Historical Note
+
+The Python port began as a simple sequential rewrite of the Bash tool.  
+Through iterative vibe‑coding, it evolved into a parallel, logged, auditable utility with a clear roadmap toward full cross‑platform support.
+
+This branch represents that evolution in real time.
 
 ---
