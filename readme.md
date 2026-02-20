@@ -147,3 +147,74 @@ WSL provides the full Linux environment needed for stable operation.
 ```bash
 sudo apt update
 sudo apt install ffmpeg
+```
+
+### ▶️ Usage (Bash Tools)
+
+- Option A — Install scripts into your WSL PATH
+
+```bash
+mkdir -p ~/scripts/bin
+mkdir -p ~/scripts/logs
+chmod +x <script>.sh
+```
+
+Add to ~/.bashrc:
+
+```bash
+export PATH="$HOME/scripts/bin:$PATH"
+```
+
+- Option B — Run directly with a directory argument
+
+```bash
+./mp3_reduce_tool.sh "/path/to/music"
+```
+
+## 🧭 Roadmap
+
+Long‑term possibilities include:
+
+Unified media‑management toolkit
+
+UPS‑aware workflows
+
+Generalized Playnite media auditing
+
+Full Python migration for cross‑platform support
+
+Optional GUI or Playnite extension integration
+
+These are possibilities, not obligations — development follows energy, interest, and community needs.
+
+## 🧾 Versioning
+
+This project uses semantic versioning:
+
+```Code
+MAJOR.MINOR.PATCH
+```
+
+## 📄 License
+
+Released under the MIT License (see LICENSE.md).
+
+## 🤝 Contributing
+
+Pull requests and suggestions are welcome — especially around:
+
+Playnite integration
+
+UniPlaySong compatibility
+
+Metadata extraction
+
+Workflow improvements
+
+Python port testing
+
+Future GUI or extension development
+
+## 🕰 Historical Note
+
+The MP3 Tools Suite began as two simple Bash utilities for analyzing and reducing MP3 files with complete transparency. Over time, the audit tool evolved into a Playnite‑aware metadata engine, and the reduce tool is now undergoing a full Python rewrite to bring the same clarity and safety to a cross‑platform environment.
