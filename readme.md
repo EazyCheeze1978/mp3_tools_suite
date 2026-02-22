@@ -17,9 +17,9 @@ The project emphasizes:
 
 ## 🚧 Active Development (Python Port)
 
-A new **cross‑platform Python version** of the reduce tool is under active development on the  
+A new **Windows-only Python version** of the reduce tool is under active development on the  
 👉 **`pre-release` branch**  
-with versions **0.0.1 → 0.1.2** already implemented.
+with versions **0.0.1 → 0.2.7** already implemented.
 
 This new version includes:
 
@@ -31,7 +31,8 @@ This new version includes:
 - Logging with timestamps  
 - PASS/SKIP audit entries  
 - Confirmation prompts  
-- CSV scaffolding  
+- CSV scaffolding and full exporting  
+- An --auto mode to assist in automation, which will delete files and export the CSV automatically
 
 See `mp3_reduce_tool/python/RELEASES.md` on the `pre-release` branch for full details.
 
@@ -59,6 +60,8 @@ This was the first tool in the suite and remains fully functional, though less a
 - Optional directory argument  
 
 #### Future Plans for Reduce
+
+**Please see the pre-release branch for the most up-to-date information on Reduce, which is continuing in Python. Keeping the Bash notes here for posterity.**
 
 - Align CSV output with `mp3_full_audit`  
 - Improve safety checks and logging  
@@ -99,7 +102,7 @@ Ideal for:
 
 ## 🧪 Future Tools
 
-## `mp3_tag_enrich.sh` (Planned)
+### `enrich.py` (Planned)
 
 A tool to fill in missing ID3 tags for MP3s downloaded via UniPlaySong’s YouTube integration (yt‑dlp).  
 Will set:
@@ -111,9 +114,9 @@ Artist tagging remains an open question due to inconsistent composer metadata.
 
 ---
 
-## 🎮 Playnite Metadata Integration (Audit Tool)
+### 🎮 Playnite Metadata Integration (Audit Tool - should be ported to Python AFTER enrich tool is done)
 
-The audit tool integrates with **Library Exporter Advanced**:
+The audit tool integrates with an exported CSV from **Library Exporter Advanced**:
 
 1. Export a CSV containing `Name, Sources, Id`  
 2. Place it next to the audit script  
@@ -175,15 +178,15 @@ export PATH="$HOME/scripts/bin:$PATH"
 
 Long‑term possibilities include:
 
-Unified media‑management toolkit
+- Unified media‑management toolkit
 
-UPS‑aware workflows
+- UPS‑aware workflows
 
-Generalized Playnite media auditing
+- Generalized Playnite media auditing
 
-Full Python migration for cross‑platform support
+- Full Python migration for cross‑platform support **(READ: full Python migration HAS occurred on the pre-release branch! However, due to the complexities of testing and offering cross-platform CLI, combined with the fact it's just not necessary for Playnite users, I have decided to go WINDOWS ONLY going forward!)**
 
-Optional GUI or Playnite extension integration
+- Optional GUI or Playnite extension integration
 
 These are possibilities, not obligations — development follows energy, interest, and community needs.
 
@@ -203,18 +206,18 @@ Released under the MIT License (see LICENSE.md).
 
 Pull requests and suggestions are welcome — especially around:
 
-Playnite integration
+- Playnite integration
 
-UniPlaySong compatibility
+- UniPlaySong compatibility
 
-Metadata extraction
+- Metadata extraction
 
-Workflow improvements
+- Workflow improvements
 
-Python port testing
+- Python port testing
 
-Future GUI or extension development
+- Future GUI or extension development
 
 ## 🕰 Historical Note
 
-The MP3 Tools Suite began as two simple Bash utilities for analyzing and reducing MP3 files with complete transparency. Over time, the audit tool evolved into a Playnite‑aware metadata engine, and the reduce tool is now undergoing a full Python rewrite to bring the same clarity and safety to a cross‑platform environment.
+The MP3 Tools Suite began as two simple Bash utilities for analyzing and reducing MP3 files with complete transparency. Over time, the audit tool evolved into a Playnite‑aware metadata engine, and the reduce tool is now undergoing a full Python rewrite to bring the same clarity and safety to a Windows-only environment.
