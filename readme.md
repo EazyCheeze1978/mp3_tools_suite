@@ -129,6 +129,10 @@ Core functionality: parallel workers, logging, skip‑reason reporting, confirma
 
 Cross‑platform support, command‑line arguments, CSV export, path normalization.
 
+### Important for post 0.2.x offerings!
+
+Due to the extreme complexity of testing and offering multi-platform CLI, I have decided to discontinue the WSL/Linux versions going forward. Everything will be Windows only, especially since Playnite is only a Windows launcher at least through its 11th release cycle. 
+
 ### **v0.3.x — Packaging & Distribution**
 
 pip packaging, PyInstaller builds, version metadata, optional GUI wrapper.
@@ -176,8 +180,8 @@ mp3_reduce_tool/bash (deprecated!)/
 ## 🧪 Testing Notes
 
 - ffmpeg must be installed and available in PATH  
-- WSL is recommended for development  
-- Windows support is planned but not yet complete  
+- WSL is recommended for development  (NO LONGER!)
+- Windows support is planned but not yet complete  (IT IS COMPLETE)
 - Parallel reduction will increase CPU usage (expected)  
 - Logs are written to the working directory  
 
@@ -185,7 +189,7 @@ If you encounter issues, please include:
 
 - the log file  
 - your Python version  
-- your OS  
+- your OS  (Windows is the only one supported now!)
 - the command used to run the script  
 
 ---
