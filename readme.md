@@ -1,19 +1,19 @@
 # MP3 Reduce Tool — Python Port (Pre‑Release Branch)
 
-This branch contains the **active development** of the Windows-only Python rewrite of the MP3 Reduce Tool.  
-It is experimental, fast‑moving, and may include features not yet available in the stable Bash version on `main`.
+This branch contains the **active development** of the Windows‑only Python rewrite of the MP3 Reduce Tool.  
+It is experimental, fast‑moving, and represents the future direction of the MP3 Tools Suite.
 
-If you're here, you're either:
+If you're here, you're likely:
 
 - testing new features  
 - contributing to development  
-- curious about the future direction of the suite  
+- curious about the upcoming Windows‑only release  
 
 Either way — welcome.
 
 ---
 
-## 🚀 Project Status
+## 🚀 Project Status (v0.2.x Series)
 
 The Python port is now fully functional through **v0.2.6**, including:
 
@@ -27,7 +27,9 @@ The Python port is now fully functional through **v0.2.6**, including:
 - spinner‑based progress indicator  
 - timestamped logging  
 - PASS/SKIP/REDUCE audit entries  
-- CSV scaffolding  
+- CSV export (with optional suppression via `--nocsv`)  
+- Windows‑native path handling  
+- Auto mode (`--auto`)  
 
 This branch evolves rapidly and may contain breaking changes between versions.
 
@@ -38,7 +40,7 @@ For a full version history, see:
 
 ## 🧩 Why a Python Port?
 
-The original Bash tools require **Windows Subsystem for Linux (WSL)** due to:
+The original Bash tools required **Windows Subsystem for Linux (WSL)** due to:
 
 - subshell behavior  
 - xargs parallelization  
@@ -46,18 +48,29 @@ The original Bash tools require **Windows Subsystem for Linux (WSL)** due to:
 
 Python removes these barriers and enables:
 
-- true cross‑platform support (which is ENDED with the 0.2.x milestone - going for Windows only.)
 - cleaner logic  
 - easier installation  
-- better logging  
 - richer metadata handling  
+- parallel processing  
+- safer file operations  
+- better logging  
 - future integration with UniPlaySong or Playnite  
 
-The long‑term goal is for the Python version to become the **primary** reduce tool.
+### ❗ Important Change (Post‑0.2.x)
+
+Although Python *could* be cross‑platform, the project is now **Windows‑only** going forward.  
+This aligns with:
+
+- Playnite being Windows‑only  
+- UniPlaySong being Windows‑only  
+- the complexity and instability of WSL testing  
+- the needs of actual users  
+
+Linux/WSL support will be fully removed in **v0.3.0**.
 
 ---
 
-## 🧪 Current Features (v0.1.x Series)
+## 🧪 Current Features (v0.2.x)
 
 ### ✔ Full Preview Mode  
 
@@ -74,114 +87,108 @@ The long‑term goal is for the Python version to become the **primary** reduce 
 - Spinner‑based progress indicator  
 - Clean, non‑interleaved output  
 
-#### ✔ Logging  
+### ✔ Logging  
 
 - Timestamped entries  
 - SKIP, PASS, REDUCE, SUMMARY  
 - Lexicographically sortable formatting  
 
-#### ✔ Safety  
+### ✔ Safety  
 
 - Confirmation prompt before reduction  
 - Non‑destructive output (`*_reduced.mp3`)  
-- No automatic deletion  
+- Safe‑delete verification  
+- Optional auto mode (`--auto`)  
 
-#### ✔ CSV Scaffolding  
+### ✔ CSV Export  
 
-- Internal row collection for PASS/REDUCE  
-- CSV export coming in v0.1.3+  
-
----
-
-## 🛣 Roadmap (Short‑Term)
-
-### **v0.1.3 — CSV Export**
-
-- Write `reduce_report.csv`  
-- Spreadsheet‑friendly formatting  
-- Optional command‑line flag  
-
-### **v0.1.4 — Command‑Line Arguments**
-
-- `--dir`  
-- `--minutes`  
-- `--auto` (skip confirmation)  
-- `--csv`  
-
-### **v0.1.5 — Windows Compatibility Layer**
-
-- Auto‑detect platform  
-- Normalize paths  
-- Use Windows ffmpeg if available  
+- PASS/SKIP/REDUCE rows  
+- Timestamped filenames  
+- Optional suppression via `--nocsv`  
 
 ---
 
-## 🗺 Milestone Roadmap
+## 🧭 Roadmap (Short‑Term)
 
-The Python port follows a clear semantic versioning roadmap.  
-Each Milestone represents a development phase with its own goals and issues.
+### **v0.2.7 — Documentation & Help Text**
 
-### **v0.1.x — Parallelization & Logging (Current)**
+- Updated README files  
+- Internal `--help` output  
+- Cleanup of comments and structure  
 
-Core functionality: parallel workers, logging, skip‑reason reporting, confirmation prompts, CSV scaffolding.
+### **v0.3.0 — Linux/WSL Removal**
 
-### **v0.2.x — Windows Compatibility & CLI Flags**
-
-Cross‑platform support, command‑line arguments, CSV export, path normalization.
-
-### Important for post 0.2.x offerings!
-
-Due to the extreme complexity of testing and offering multi-platform CLI, I have decided to discontinue the WSL/Linux versions going forward. Everything will be Windows only, especially since Playnite is only a Windows launcher at least through its 11th release cycle. 
+- Remove environment detection  
+- Remove WSL path normalization  
+- Remove Linux branches  
+- Simplify codebase  
+- Windows‑only assumptions everywhere  
 
 ### **v0.3.x — Packaging & Distribution**
 
-pip packaging, PyInstaller builds, version metadata, optional GUI wrapper.
-
-### **v1.0.0 — First Stable Python Release**
-
-Feature‑complete, cross‑platform, documented, and ready for general use.
-
-### **Future Ideas & Explorations**
-
-Long‑term possibilities: GUI, Playnite integration, multi‑format support, unified media toolkit.
+- PyInstaller builds  
+- Version metadata  
+- Optional GUI wrapper  
 
 ---
 
-## 🛣 Roadmap (Long‑Term)
+## 🗺 Milestone Roadmap (High‑Level)
 
-- Full packaging (pip or PyInstaller)  
-- Optional GUI wrapper  
-- Integration hooks for UniPlaySong  
-- Unified media‑management toolkit  
-- Support for additional audio formats  
-- Optional Playnite metadata enrichment  
+### **v0.2.x — Windows Compatibility & CLI Flags (Current)**
+
+- Windows‑native behavior  
+- CLI arguments  
+- CSV export  
+- Auto mode  
+- Logging improvements  
+
+### **v0.3.x — Cleanup & Packaging**
+
+- Remove Linux code  
+- Simplify architecture  
+- Prepare for distribution  
+
+### **v1.0.0 — First Stable Python Release**
+
+- Fully documented  
+- Packaged  
+- Windows‑only  
+- Feature‑complete  
+
+### **Future Ideas**
+
+- GUI  
+- Playnite integration  
+- Multi‑format support  
+- Unified media toolkit  
 
 These are possibilities, not promises — development follows energy and community interest.
 
 ---
 
-## 🧭 Directory Structure
+## 📁 Directory Structure
 
+```
 mp3_reduce_tool/
-python/
-reduce-v0.0.1.py
-reduce-v0.0.2.py
-...
-reduce-v0.1.2.py
-RELEASES.md
-README.md   ← this file
+  python/
+    reduce-v0.0.1.py
+    reduce-v0.0.2.py
+    ...
+    reduce-v0.2.6.py
+    RELEASES.md
+    README.md   ← this file
 
-Older Bash versions are preserved in:
-
-mp3_reduce_tool/bash (deprecated!)/
+  bash/ (deprecated)
+    mp3_reduce_tool.sh
+    mp3_full_audit.sh
+```
 
 ---
 
 ## 🧪 Testing Notes
 
 - ffmpeg must be installed and available in PATH  
-- WSL is recommended for development  (NO LONGER!)
-- Windows support is planned but not yet complete  (IT IS COMPLETE)
+- Windows is the only supported platform  
 - Parallel reduction will increase CPU usage (expected)  
 - Logs are written to the working directory  
 
@@ -189,7 +196,7 @@ If you encounter issues, please include:
 
 - the log file  
 - your Python version  
-- your OS  (Windows is the only one supported now!)
+- your OS (Windows only)  
 - the command used to run the script  
 
 ---
@@ -203,7 +210,7 @@ Contributions are welcome — especially around:
 - command‑line argument parsing  
 - performance improvements  
 - documentation  
-- testing across platforms  
+- testing  
 
 ---
 
@@ -216,8 +223,6 @@ This branch follows the project’s MIT License (see `LICENSE.md` on main).
 ## 🕰 Historical Note
 
 The Python port began as a simple sequential rewrite of the Bash tool.  
-Through iterative vibe‑coding, it evolved into a parallel, logged, auditable utility with a clear roadmap toward full cross‑platform support.
+Through iterative development, it evolved into a parallel, logged, auditable utility with a clear roadmap toward a Windows‑only stable release.
 
 This branch represents that evolution in real time.
-
----
