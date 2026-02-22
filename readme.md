@@ -1,6 +1,6 @@
 # MP3 Reduce Tool — Python Port (Pre‑Release Branch)
 
-This branch contains the **active development** of the cross‑platform Python rewrite of the MP3 Reduce Tool.  
+This branch contains the **active development** of the Windows-only Python rewrite of the MP3 Reduce Tool.  
 It is experimental, fast‑moving, and may include features not yet available in the stable Bash version on `main`.
 
 If you're here, you're either:
@@ -15,7 +15,7 @@ Either way — welcome.
 
 ## 🚀 Project Status
 
-The Python port is now fully functional through **v0.1.2**, including:
+The Python port is now fully functional through **v0.2.6**, including:
 
 - ffprobe‑based metadata extraction  
 - savings calculations  
@@ -46,7 +46,7 @@ The original Bash tools require **Windows Subsystem for Linux (WSL)** due to:
 
 Python removes these barriers and enables:
 
-- true cross‑platform support  
+- true cross‑platform support (which is ENDED with the 0.2.x milestone - going for Windows only.)
 - cleaner logic  
 - easier installation  
 - better logging  
@@ -149,7 +149,7 @@ Long‑term possibilities: GUI, Playnite integration, multi‑format support, un
 
 ## 🛣 Roadmap (Long‑Term)
 
-- Full cross‑platform packaging (pip or PyInstaller)  
+- Full packaging (pip or PyInstaller)  
 - Optional GUI wrapper  
 - Integration hooks for UniPlaySong  
 - Unified media‑management toolkit  
