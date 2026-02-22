@@ -19,7 +19,7 @@ The project emphasizes:
 
 A new **Windows-only Python version** of the reduce tool is under active development on the  
 👉 **`pre-release` branch**  
-with versions **0.0.1 → 0.2.7** already implemented.
+with versions **0.0.1 → 0.2.6** already implemented.
 
 This new version includes:
 
