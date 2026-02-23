@@ -30,11 +30,15 @@ All versions listed here are **pre‑release**, experimental, and Windows‑only
     - [**v0.2.4**](#v024)
     - [**v0.2.5**](#v025)
     - [**v0.2.6**](#v026)
-    - [**v0.2.7** *(in development)*](#v027-in-development)
-  - [0.3.x — Planned: Linux Removal \& Cleanup](#03x--planned-linux-removal--cleanup)
-    - [Goals](#goals)
+    - [**v0.2.7**](#v027)
+  - [v0.3.0 — Windows‑Only Simplification \& Codebase Cleanup](#v030--windowsonly-simplification--codebase-cleanup)
+    - [🔥 Major Changes](#-major-changes)
+    - [🧹 Internal Cleanup](#-internal-cleanup)
+    - [🎯 Why This Matters](#-why-this-matters)
+    - [🧪 Behavior Changes](#-behavior-changes)
+    - [📌 Notes](#-notes)
   - [1.0.0 — Planned: First Stable Python Release](#100--planned-first-stable-python-release)
-    - [Goals](#goals-1)
+    - [Goals](#goals)
   - [🕰 Historical Note](#-historical-note)
 
 ---
@@ -151,7 +155,7 @@ The tool becomes Windows‑native, user‑friendly, and automation‑ready.
 - Polished user experience  
 - Cleaned up prompt flow and messaging  
 
-### **v0.2.7** *(in development)*
+### **v0.2.7**
 
 - Documentation overhaul  
 - Updated README files  
@@ -161,20 +165,68 @@ The tool becomes Windows‑native, user‑friendly, and automation‑ready.
 
 ---
 
-## 0.3.x — Planned: Linux Removal & Cleanup  
+## v0.3.0 — Windows‑Only Simplification & Codebase Cleanup  
 
-A major simplification milestone.
+**Release Date:** 2026‑02‑23  
+**Milestone:** 0.3.x — Cleanup & Preparation for CSV Input
 
-### Goals
+This release marks a major turning point for the Python port.  
+After extensive testing and real‑world usage, the project is now officially **Windows‑only**, fully aligned with Playnite and UniPlaySong’s ecosystem. All Linux/WSL support has been removed, resulting in a cleaner, faster, and more maintainable codebase.
 
-- Remove all Linux/WSL detection  
-- Remove WSL path normalization  
-- Remove Linux‑specific branches  
-- Remove cross‑platform abstractions  
-- Simplify codebase for Windows‑only operation  
-- Prepare for packaging (PyInstaller)  
+### 🔥 Major Changes
 
-This milestone marks the official end of Linux/WSL support.
+- **Removed all Linux and WSL support**
+  - No more environment detection  
+  - No more WSL path normalization  
+  - No more Linux branches or fallback logic  
+  - No more `mode` variable throughout the script  
+
+- **Simplified path handling**
+  - `normalize_path()` is now Windows‑only  
+  - Directory normalization is straightforward and predictable  
+
+- **Simplified ffmpeg/ffprobe detection**
+  - Clean Windows‑only check  
+  - Clear error message if tools are missing  
+
+- **Spinner always enabled**
+  - No more WSL‑based disabling  
+  - Cleaner, more consistent user experience  
+
+### 🧹 Internal Cleanup
+
+- Removed ~60 lines of legacy cross‑platform code  
+- Removed all comments referencing Linux/WSL  
+- Removed environment‑specific branches in worker, deletion, and preview logic  
+- Reduced cognitive load for future contributors  
+- Script is now easier to read, maintain, and extend  
+
+### 🎯 Why This Matters
+
+This cleanup:
+
+- eliminates entire classes of bugs  
+- removes the need to test multiple environments  
+- aligns the tool with its real user base  
+- prepares the codebase for upcoming CSV Input support  
+- makes the project emotionally and technically sustainable  
+
+### 🧪 Behavior Changes
+
+- No functional changes to reduction logic  
+- No changes to CSV export  
+- No changes to auto mode  
+- No changes to logging  
+- Only platform‑related behavior was removed  
+
+### 📌 Notes
+
+- The message “Detected environment: Windows (native Python)” remains for now as a harmless reminder of the project’s evolution.  
+- May be removed in a future patch (0.3.1).  
+
+---
+
+This release completes the transition from a cross‑platform prototype to a focused, Windows‑native tool ready for deeper integration with Playnite and UniPlaySong.
 
 ---
 
