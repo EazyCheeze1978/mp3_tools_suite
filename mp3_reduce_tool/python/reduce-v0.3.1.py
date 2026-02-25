@@ -7,7 +7,6 @@
 # - CSV Input overrides directory scanning entirely
 # - Added UPS root prompt for rows missing FilePath
 # - CSV loader placed at bottom of helper section (easy to find)
-# - No changes to reduction logic yet (Parts 2–3 will handle that)
 # ------------------------------------------------------------
 
 import subprocess
@@ -468,9 +467,6 @@ def main():
         print("\nUsing file list from CSV Input.\n")
 
     # ------------------------------------------------------------
-    # The preview loop begins here in Part 2
-    # ------------------------------------------------------------
-    # ------------------------------------------------------------
     # PREVIEW LOOP (updated for CSV Input)
     # ------------------------------------------------------------
     TARGET_BITRATE = 128000
@@ -702,9 +698,6 @@ def main():
 
         return
 
-    # ------------------------------------------------------------
-    # Parallel reduction begins in Part 3
-    # ------------------------------------------------------------
     # ------------------------------------------------------------
     # Parallel reduction (spinner always enabled)
     # ------------------------------------------------------------
