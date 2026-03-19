@@ -31,11 +31,12 @@ All versions listed here are **pre‑release**, experimental, and Windows‑only
     - [**v0.2.5**](#v025)
     - [**v0.2.6**](#v026)
     - [**v0.2.7**](#v027)
-  - [v0.3.x — Windows‑Only Simplification \& Codebase Cleanup](#v03x--windowsonly-simplification--codebase-cleanup)
-    - [**0.3.0:**](#030)
-    - [**0.3.1**](#031)
-    - [**0.3.2**](#032)
-    - [**0.3.3**](#033)
+  - [v0.3.0 — Windows‑Only Simplification \& Codebase Cleanup](#v030--windowsonly-simplification--codebase-cleanup)
+    - [🔥 Major Changes](#-major-changes)
+    - [🧹 Internal Cleanup](#-internal-cleanup)
+    - [🎯 Why This Matters](#-why-this-matters)
+    - [🧪 Behavior Changes](#-behavior-changes)
+    - [📌 Notes](#-notes)
   - [1.0.0 — Planned: First Stable Python Release](#100--planned-first-stable-python-release)
     - [Goals](#goals)
   - [🕰 Historical Note](#-historical-note)
@@ -164,40 +165,68 @@ The tool becomes Windows‑native, user‑friendly, and automation‑ready.
 
 ---
 
-## v0.3.x — Windows‑Only Simplification & Codebase Cleanup  
+## v0.3.0 — Windows‑Only Simplification & Codebase Cleanup  
 
-### **0.3.0:**
+**Release Date:** 2026‑02‑23  
+**Milestone:** 0.3.x — Cleanup & Preparation for CSV Input
 
-- Removed all Linux/WSL support
-- Removed environment detection
-- Removed mode variable entirely
-- Simplified path normalization for Windows-only
-- Simplified directory normalization
-- Spinner always enabled (no WSL disabling)
+This release marks a major turning point for the Python port.  
+After extensive testing and real‑world usage, the project is now officially **Windows‑only**, fully aligned with Playnite and UniPlaySong’s ecosystem. All Linux/WSL support has been removed, resulting in a cleaner, faster, and more maintainable codebase.
 
-### **0.3.1**
+### 🔥 Major Changes
 
-- Added optional CSV Input support for UniPlaySong users
-- CSV Input overrides directory scanning entirely
-- Added UPS root prompt for rows missing FilePath
-- CSV loader placed at bottom of helper section (easy to find)
+- **Removed all Linux and WSL support**
+  - No more environment detection  
+  - No more WSL path normalization  
+  - No more Linux branches or fallback logic  
+  - No more `mode` variable throughout the script  
 
-### **0.3.2**
+- **Simplified path handling**
+  - `normalize_path()` is now Windows‑only  
+  - Directory normalization is straightforward and predictable  
 
-- Added optional bitrate and savings limiters (disabled by default)
-- Homogenization-first behavior: all files are processed unless
-  user explicitly enables limiters via CLI flags
-- Bitrate limiter (--force-bitrate) restores "skip <=128 kbps"
-- Savings limiter (--force-savings) restores "skip <20% savings"
-- _reduced skip logic/naming remains mandatory
+- **Simplified ffmpeg/ffprobe detection**
+  - Clean Windows‑only check  
+  - Clear error message if tools are missing  
 
-### **0.3.3**
+- **Spinner always enabled**
+  - No more WSL‑based disabling  
+  - Cleaner, more consistent user experience  
 
-- Fixed argparse help crash caused by unescaped percent signs in help text
-- Restored and clarified pause before deletion (when not in --auto mode)
-- Added summary of files where reduced output is larger than original
-- Added optional deletion of originals even when reduced file is larger
-  (prompted in interactive mode; skipped by default in --auto)
+### 🧹 Internal Cleanup
+
+- Removed ~60 lines of legacy cross‑platform code  
+- Removed all comments referencing Linux/WSL  
+- Removed environment‑specific branches in worker, deletion, and preview logic  
+- Reduced cognitive load for future contributors  
+- Script is now easier to read, maintain, and extend  
+
+### 🎯 Why This Matters
+
+This cleanup:
+
+- eliminates entire classes of bugs  
+- removes the need to test multiple environments  
+- aligns the tool with its real user base  
+- prepares the codebase for upcoming CSV Input support  
+- makes the project emotionally and technically sustainable  
+
+### 🧪 Behavior Changes
+
+- No functional changes to reduction logic  
+- No changes to CSV export  
+- No changes to auto mode  
+- No changes to logging  
+- Only platform‑related behavior was removed  
+
+### 📌 Notes
+
+- The message “Detected environment: Windows (native Python)” remains for now as a harmless reminder of the project’s evolution.  
+- May be removed in a future patch (0.3.1).  
+
+---
+
+This release completes the transition from a cross‑platform prototype to a focused, Windows‑native tool ready for deeper integration with Playnite and UniPlaySong.
 
 ---
 
