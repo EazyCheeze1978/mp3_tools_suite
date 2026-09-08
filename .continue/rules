@@ -1,6 +1,6 @@
 # Code architecture
 
-This is a repository for a set of MP3 manipulation tools in various states of development. The most robust is Reduce, which was originally intended to serve the Playnite extension UniPlaySong ("UPS") to reduce the size of stored MP3 files. This has recently been incorporated into UPS as native features independently of my work, and has thus been deprecated.
+This is a repository for a set of MP3 manipulation tools, created mostly via vibe coding with Copilot, in various states of development. The most robust is Reduce, which was originally intended to serve the Playnite extension UniPlaySong ("UPS") to reduce the size of stored MP3 files. This has recently been incorporated into UPS as native features independently of my work, and has thus been deprecated.
 
 ## How I'll use this
 
